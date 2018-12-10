@@ -9,6 +9,11 @@
     <meta name="description" content="Fly社区是模块化前端UI框架Layui的官网社区，致力于为web开发提供强劲动力">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/res/layui/css/layui.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/res/css/global.css">
+    <script src="${pageContext.request.contextPath}/res/jquery-3.3.1.js"></script>
+    <script src="${pageContext.request.contextPath}/res/mods/util.js"></script>
+    <script>
+
+    </script>
 </head>
 <body>
 
@@ -24,7 +29,7 @@
             <div class="layui-form layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
                 <div class="layui-tab-item layui-show">
                     <div class="layui-form layui-form-pane">
-                        <form method="post">
+                        <form method="post" action="${pageContext.request.contextPath}/user/dologin">
                             <div class="layui-form-item">
                                 <label for="L_email" class="layui-form-label">邮箱</label>
                                 <div class="layui-input-inline">
@@ -34,7 +39,7 @@
                             <div class="layui-form-item">
                                 <label for="L_pass" class="layui-form-label">密码</label>
                                 <div class="layui-input-inline">
-                                    <input type="password" id="L_pass" name="pass" required lay-verify="required" autocomplete="off" class="layui-input">
+                                    <input type="password" id="L_pass" name="passwd" required lay-verify="required" autocomplete="off" class="layui-input">
                                 </div>
                             </div>
                             <div class="layui-form-item">
@@ -43,8 +48,9 @@
                                     <input type="text" id="L_vercode" name="vercode" required lay-verify="required" placeholder="请回答后面的问题" autocomplete="off" class="layui-input">
                                 </div>
                                 <div class="layui-form-mid">
-                                    <span style="color: #c00;">{{d.vercode}}</span>
+                                    <span style="color: #c00;"id="spanRenlei"></span>
                                 </div>
+                                <span id="checkRenlei"></span>
                             </div>
                             <div class="layui-form-item">
                                 <button class="layui-btn" lay-filter="*" lay-submit>立即登录</button>

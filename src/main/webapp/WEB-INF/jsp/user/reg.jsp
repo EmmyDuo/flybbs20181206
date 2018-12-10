@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/res/layui/css/layui.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/res/css/global.css">
     <script src="${pageContext.request.contextPath}/res/jquery-3.3.1.js"></script>
+    <script src="${pageContext.request.contextPath}/res/mods/util.js"></script>
     <script>
         function checkEmail() {
             var a=$("#form1").serialize();
@@ -27,14 +28,16 @@
             })
         }
         $(function () {
-            $("#password").blur(function () {
-                var mima = $("#L_pass").val()
-                var querenmima = $("#password").val()
-                if (mima==querenmima){
-
+            $("#L_repass").blur(function () {
+                var L_pass = $("#L_pass").val();
+                var L_repass = $("#L_repass").val();
+                if (L_pass == L_repass){
+                    $("#password1").text("两次密码填写相同");
+                }else {
+                    $("#password1").text("两次密码不相同");
                 }
             })
-        })
+        });
     </script>
 </head>
 
@@ -64,13 +67,13 @@
                             <div class="layui-form-item">
                                 <label for="L_username" class="layui-form-label">昵称</label>
                                 <div class="layui-input-inline">
-                                    <input type="text" id="L_username" name="username" required lay-verify="required" autocomplete="off" class="layui-input">
+                                    <input type="text" id="L_username" name="nickname" required lay-verify="required" autocomplete="off" class="layui-input">
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <label for="L_pass" class="layui-form-label">密码</label>
                                 <div class="layui-input-inline">
-                                    <input type="password" id="L_pass" name="pass" required lay-verify="required" autocomplete="off" class="layui-input">
+                                    <input type="password" id="L_pass" name="passwd" required lay-verify="required" autocomplete="off" class="layui-input">
                                 </div>
                                 <div class="layui-form-mid layui-word-aux">6到16个字符</div>
                             </div>
@@ -78,7 +81,7 @@
                                 <label for="L_repass" class="layui-form-label">确认密码</label>
                                 <div class="layui-input-inline">
                                     <input type="password" id="L_repass" name="repass" required lay-verify="required" autocomplete="off" class="layui-input">
-                                    <span id="password"></span>
+                                    <span id="password1"></span>
                                 </div>
                             </div>
                             <div class="layui-form-item">
@@ -87,8 +90,9 @@
                                     <input type="text" id="L_vercode" name="vercode" required lay-verify="required" placeholder="请回答后面的问题" autocomplete="off" class="layui-input">
                                 </div>
                                 <div class="layui-form-mid">
-                                    <span style="color: #c00;">{{d.vercode}}</span>
+                                    <span style="color: #c00;"id="spanRenlei"></span>
                                 </div>
+                                <span id="checkRenlei"></span>
                             </div>
                             <div class="layui-form-item">
                                 <button class="layui-btn" lay-filter="*" lay-submit>立即注册</button>
